@@ -54,7 +54,7 @@ function FirstGraph() {
           textAccessible: true,
           numyticks: 6,
           numxticks: 2,
-          title: 'Įtampos priklausomybė nuo temperatūros',
+          title: 'Itampos priklausomybe nuo temperaturos',
           tickmarks: null,
           backgroundHbars: [
               [0,5,'rgba(240,240,240,0.25)'],
