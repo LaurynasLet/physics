@@ -2,6 +2,7 @@
 <html>
 
 <head>
+	<title>Medžiagų mokslas</title>
 	<meta charset="UTF-8">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script type="text/javascript">
@@ -25,6 +26,11 @@
 			step="1" oninput="outputUpdateIlgis(value)">
 		<output for="ilgis" id="IlgisVal">20mm</output>
 		<button onclick="generateGraph()">Generuoti</button>
+		Pasirinkite medžiagą
+		<select id="item" onchange="ForSelect()">
+			<option value="1" id="si"> Silicis </option>
+			<option value="2" id="ge" selected> Germanis </option>
+		</select>
 	</div>
 	<div>
 		<label for="DJP">Draustinės juostos plotis</label>

@@ -20,17 +20,35 @@ function generateGraph(){
   var ilgis = document.querySelector('#IlgisVal').value;
   ilgis = ilgis.slice(0, -2);
   ilgis *= 0.001;
-  RGraph.Reset(document.getElementById('cvd'))
+  RGraph.Reset(document.getElementById('cvs'));
+  RGraph.Reset(document.getElementById('cvd'));
+  FirstGraph();
   SecondGraph(plotis, ilgis);
+}
+
+function ForSelect(){
+	generateGraph();
+	FirstGraph();
+ 	SecondGraph();
 }
 
 function FirstGraph() {
   var Temp = 30;
   var TempArray = new Array;
+  var TestItampa = new Array;
+  var Itampa = new Array;
   for (var i = 0; i < 13; i++) {
     TempArray[i] = Temp + 10 *i;
+    Itampa[i] = Math.abs(0.005 * ((0.02*(0.1*(1-0.07*TempArray[i])))/(0.001*0.02)));
   }
+  var e = document.getElementById("item");
+  var item = e.options[e.selectedIndex].value;
+  if(item == 1){
+  var Itampa = ['0.03', '0.08', '0.16', '0.37', '0.50', '0.62', '0.75', '1.23', '2.75', '5.39', '8.64', '12.42', '17.35'];
+  }else{
   var Itampa = ['0.11', '0.13', '0.18', '0.22', '0.29', '0.40', '0.55', '0.76', '1.06', '1.55', '2.25', '3.42', '5.35'];
+  }
+  console.log(Itampa);
   var ItampaArray = Itampa.reverse();
   new RGraph.Line({
       id: 'cvs',
@@ -44,9 +62,9 @@ function FirstGraph() {
           shadow: false,
           spline: true,
           linewidth: 5,
-          ymax: 7,
           scaleDecimals: 1,
           ylabelsCount: 5,
+          ymax: Itampa[0],
           backgroundGridAutofitNumhlines: 12,
           backgroundGridAutofitNumvlines: 12,
           axisColor: 'gray',
@@ -74,19 +92,23 @@ function FirstGraph() {
 }
 
 function SecondGraph(plotis, ilgis) {
+  var Temp = 30;		
+    var e = document.getElementById("item");
+  var item = e.options[e.selectedIndex].value;
+  if(item == 1){
+  var Itampa = ['0.03', '0.08', '0.16', '0.37', '0.50', '0.62', '0.75', '1.23', '2.75', '5.39', '8.64', '12.42', '17.35'];
+  }else{
   var Itampa = ['0.11', '0.13', '0.18', '0.22', '0.29', '0.40', '0.55', '0.76', '1.06', '1.55', '2.25', '3.42', '5.35'];
+  }
   var Stipris = 0.005;
-  var Plotas = (plotis * ilgis) || (0.02 * 0.01);
-  var Ilgis = ilgis || 0.02;
+  var Plotas = (plotis * ilgis) || (0.01 * 0.001);
+  var Ilgis = ilgis || 0.01;
   var Elaidis = new Array;
   var ElaidisLog = new Array;
   for (var i = 0; i < 13; i++) {
     Elaidis[i] = ((Stipris/Itampa[i])*Ilgis)/(Plotas);
     ElaidisLog[i] = Math.log(Elaidis[i]);
   }
-  console.log(Ilgis);
-  console.log(Plotas);
-  console.log(ElaidisLog);
   new RGraph.Line({
       id: 'cvd',
       data: [
@@ -129,5 +151,7 @@ function SecondGraph(plotis, ilgis) {
       }
   }).trace2();
   var DPJ = (ElaidisLog[0] - ElaidisLog[12])/(0.94*Math.pow(10, -3)) * 2 * 8.167343 * Math.pow(10, -5);
-  document.querySelector('#DJPVal').value = DPJ.toFixed(4);
+  document.querySelector('#DJPVal').value = DPJ.toFixed(2);
+  
+  
 }
