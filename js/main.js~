@@ -20,8 +20,8 @@ function generateGraph(){
   var ilgis = document.querySelector('#IlgisVal').value;
   ilgis = ilgis.slice(0, -2);
   ilgis *= 0.001;
-  //RGraph.Reset(document.getElementById('cvs'));
-  RGraph.Reset(document.getElementById('cvd'));
+  RGraph.Reset(document.getElementById('cvs'));
+  FirstGraph();
   SecondGraph(plotis, ilgis);
 }
 

@@ -21,7 +21,6 @@ function generateGraph(){
   ilgis = ilgis.slice(0, -2);
   ilgis *= 0.001;
   RGraph.Reset(document.getElementById('cvs'));
-  RGraph.Reset(document.getElementById('cvd'));
   FirstGraph();
   SecondGraph(plotis, ilgis);
 }
@@ -92,6 +91,7 @@ function FirstGraph() {
 }
 
 function SecondGraph(plotis, ilgis) {
+ RGraph.Reset(document.getElementById('cvd'));
   var Temp = 30;		
     var e = document.getElementById("item");
   var item = e.options[e.selectedIndex].value;
