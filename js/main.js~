@@ -2,7 +2,6 @@ $( document ).ready(function() {
 
   FirstGraph();
   SecondGraph();
-  //var ItampaArray = Itampa.reverse();
 
 });
 
@@ -91,6 +90,7 @@ function FirstGraph() {
 }
 
 function SecondGraph(plotis, ilgis) {
+ RGraph.Reset(document.getElementById('cvd'));
   var Temp = 30;		
     var e = document.getElementById("item");
   var item = e.options[e.selectedIndex].value;
@@ -108,6 +108,8 @@ function SecondGraph(plotis, ilgis) {
     Elaidis[i] = ((Stipris/Itampa[i])*Ilgis)/(Plotas);
     ElaidisLog[i] = Math.log(Elaidis[i]);
   }
+  var sigma = String.fromCharCode(963);
+  var title = "ln"+sigma+"=";
   new RGraph.Line({
       id: 'cvd',
       data: [
@@ -132,7 +134,7 @@ function SecondGraph(plotis, ilgis) {
           textAccessible: true,
           numyticks: 6,
           numxticks: 2,
-          title: '',
+          title: title,
           tickmarks: null,
           backgroundHbars: [
               [0,5,'rgba(240,240,240,0.25)'],

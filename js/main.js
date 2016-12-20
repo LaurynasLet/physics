@@ -2,7 +2,6 @@ $( document ).ready(function() {
 
   FirstGraph();
   SecondGraph();
-  //var ItampaArray = Itampa.reverse();
 
 });
 
@@ -109,6 +108,9 @@ function SecondGraph(plotis, ilgis) {
     Elaidis[i] = ((Stipris/Itampa[i])*Ilgis)/(Plotas);
     ElaidisLog[i] = Math.log(Elaidis[i]);
   }
+  var sigma = String.fromCharCode(963);
+  var func	= String.fromCharCode(989);
+  var title = "ln"+sigma+"="+func+"(1/T)";
   new RGraph.Line({
       id: 'cvd',
       data: [
@@ -133,7 +135,7 @@ function SecondGraph(plotis, ilgis) {
           textAccessible: true,
           numyticks: 6,
           numxticks: 2,
-          title: '',
+          title: title,
           tickmarks: null,
           backgroundHbars: [
               [0,5,'rgba(240,240,240,0.25)'],
